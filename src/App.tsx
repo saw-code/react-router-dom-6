@@ -1,28 +1,29 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Navigate, NavLink, Route, Routes, useNavigate} from "react-router-dom";
+import {Navigate, NavLink, Route, Routes, useNavigate, useSearchParams} from "react-router-dom";
+
 
 const Profile = () => {
-  const navigate = useNavigate() // с помощью этого хука мы получаем ф-цию и ей в дальнейшем передаем /login и переходим на эту страницу
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  // 1 вариант
-  // useEffect(() => {
-  //   if (true) navigate('/login')
-  // }, [])
+  console.log(searchParams.get('name'))
+  console.log(Object.fromEntries(searchParams))
+
+  useEffect(() => {
+    console.log('research...')
+  }, [searchParams])
 
 
   return (
     <div>
-      {/*2 вариант*/}
-    {/*  {true ? (*/}
-    {/*    <Navigate to={'/login'}/>*/}
-    {/*  ):(*/}
-    {/*    <>*/}
-    {/*      profile*/}
-    {/*      <button onClick={() => {navigate('/login')}}>logout</button>*/}
-    {/*    </>*/}
-    {/*)}*/}
-      <button onClick={() => {navigate(-1)}}>logout</button>
+      profile
+      <button
+        onClick={() => {
+          setSearchParams({age: '32'})
+        }}
+      >
+        add age
+      </button>
     </div>
   )
 }
@@ -33,7 +34,7 @@ function App() {
       <NavLink to={'/'}>main</NavLink>---
       <NavLink to={'/login'}>login</NavLink>---
       <NavLink to={'/profile'}>profile</NavLink>---
-      <NavLink to={'/profile/settings'}>settings</NavLink>
+
 
       <Routes>
         <Route path={'/*'} element={<div>404</div>}/> {/* звездочка говорит что после слеша может быть что угодно */}
