@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.def {
+  background: aquamarine;
+}
+
+.act {
+  background: blueviolet;
+}
+
+.active {
+  font-size: 50px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
